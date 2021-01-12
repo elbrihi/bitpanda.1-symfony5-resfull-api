@@ -23,17 +23,17 @@ class Users
     private $email;
 
     /**
-     * @ORM\Column(columnDefinition="TINYINT DEFAULT 1 NOT NULL")
+     * @ORM\Column(columnDefinition="TINYINT NOT NULL", length=1)
      */
     private $active;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(columnDefinition="TIMESTAMP NULL DEFAULT NULL", nullable=true)
      */
     private $created_at;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(columnDefinition="TIMESTAMP NULL DEFAULT NULL", nullable=true)
      */
     private $updated_at;
 
