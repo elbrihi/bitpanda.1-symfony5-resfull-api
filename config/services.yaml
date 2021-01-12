@@ -27,5 +27,16 @@ services:
         resource: '../src/Controller/'
         tags: ['controller.service_arguments']
 
+    app.user_controller:
+        class: App\Controller\UserController
+        arguments:
+            $user_manager: '@user_manager'
+        public: true
+
+    user_manager:
+        class: App\Service\UserManager
+        arguments:
+            $entityManager: '@doctrine.orm.entity_manager'
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
