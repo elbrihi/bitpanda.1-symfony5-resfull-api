@@ -36,9 +36,16 @@ class UserDetails
 
     /**
      * 
-     * @ORM\ManyToOne(targetEntity="", inversedBy="")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Countries", inversedBy="user_details")
+     * @ORM\JoinColumn(name="citizenship_country_id", referencedColumnName="id")
      */
-    
+    private $countries ;
+
+    /**
+     * 
+     * @ORM\OneToOne(targetEntity="App\Entity\Users", inversedBy="users_details")
+     */
+    private $user ; 
 
     public function getId(): ?int
     {

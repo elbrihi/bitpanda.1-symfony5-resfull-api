@@ -37,6 +37,12 @@ class Users
      */
     private $updated_at;
 
+    /**
+     * 
+     * @ORM\OneToOne(targetEntity="App\Entity\UserDetails",  mappedBy="user")
+     */
+    private $users_details ; 
+
     public function getId(): ?int
     {
         return $this->id;

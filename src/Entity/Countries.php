@@ -38,7 +38,7 @@ class Countries
     
     /**
      * 
-     * @ORM\OneToMany(targetEntity="App\Entity", mappedBy="")
+     * @ORM\OneToMany(targetEntity="App\Entity\UserDetails", mappedBy="countries")
      */
     private $user_details;
     
