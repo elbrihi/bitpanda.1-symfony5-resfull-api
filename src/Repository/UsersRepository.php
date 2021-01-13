@@ -47,4 +47,19 @@ class UsersRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function getActiveAustriansUsers()
+    {
+        $users = $this->createQueryBuilder('u')
+                 ->select(['ud.first_name','ud.last_name',
+                          'ud.phone_number','u.email' ])
+                ->from('App\Entity\UserDetails', 'ud')
+                ->from('App\Entity\Countries', 'c')
+                ->andWhere('ud.user = u.id') 
+                ->andWhere('u.active = 1')
+                ->andWhere('c.name = :cou')
+                ->setParameter('cou', 'Austria') 
+                ->andWhere('ud.countries = c.id')
+                ->getQuery()->getResult();
+        return $users;
+    }
 }

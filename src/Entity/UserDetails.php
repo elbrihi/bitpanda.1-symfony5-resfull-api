@@ -32,8 +32,6 @@ class UserDetails
      */
     private $phone_number;
 
-
-
     /**
      * 
      * @ORM\ManyToOne(targetEntity="App\Entity\Countries", inversedBy="user_details")
@@ -43,7 +41,8 @@ class UserDetails
 
     /**
      * 
-     * @ORM\OneToOne(targetEntity="App\Entity\Users", inversedBy="users_details")
+     * @ORM\OneToOne(targetEntity="App\Entity\Users", inversedBy="user_details")
+     * 
      */
     private $user ; 
 
@@ -87,4 +86,6 @@ class UserDetails
 
         return $this;
     }
+
+   
 }

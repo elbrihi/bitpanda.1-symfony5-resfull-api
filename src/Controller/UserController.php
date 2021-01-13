@@ -9,13 +9,15 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\View\View;
 use App\Service\UserManager ;
 
-
+use DateTimeInterface ;
 class UserController extends AbstractController
 {
     private $user_manager ;
 
+    
     public function __construct(UserManager $user_manager)
     {
+        
         $this->user_manager = $user_manager ;
     }
 
@@ -35,6 +37,16 @@ class UserController extends AbstractController
      * @Rest\Get("api/users",name="_users")
      */
     public function getUsers()
+    {
+        return $this->user_manager->getUsers() ;
+    }
+
+    /**
+     * 
+     * @Rest\View()
+     * @Rest\Get("api/active_austrians_users",name="_active_austrians_users")
+     */
+    public function getActiveAustriansUsers()
     {
         return $this->user_manager->getUsers() ;
     }
