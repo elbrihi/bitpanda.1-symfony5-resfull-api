@@ -43,7 +43,7 @@ class Users
      * 
      * @ORM\OneToOne(targetEntity="App\Entity\UserDetails",  mappedBy="user")
      */
-    private $users_details ; 
+    private $user_details ; 
 
     public function getId(): ?int
     {

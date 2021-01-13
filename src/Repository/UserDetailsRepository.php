@@ -19,7 +19,18 @@ class UserDetailsRepository extends ServiceEntityRepository
         parent::__construct($registry, UserDetails::class);
     }
 
-    // /**
+   
+    public function findUserDetailByUserId($user_id): ?UserDetails
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.user = :user_id')
+            ->setParameter('user_id', $user_id)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+     // /**
     //  * @return UserDetails[] Returns an array of UserDetails objects
     //  */
     /*
@@ -47,4 +58,5 @@ class UserDetailsRepository extends ServiceEntityRepository
         ;
     }
     */
+    
 }

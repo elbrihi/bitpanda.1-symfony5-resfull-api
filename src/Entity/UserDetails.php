@@ -87,5 +87,30 @@ class UserDetails
         return $this;
     }
 
+    public function setUser($user):self
+    {
+
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    public function getCountries()
+    {
+        return $this->countries;
+    }
+
+    public function setCountries($countries): self
+    {
+        $this->countries = $countries;
+
+        return $this;
+    }
+
    
 }

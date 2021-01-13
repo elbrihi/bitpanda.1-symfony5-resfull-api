@@ -33,13 +33,30 @@ services:
             $user_manager: '@user_manager'
         public: true
 
+    app.user_details_controller:
+        class: App\Controller\UserDetailsController
+        arguments:
+            $user_details_manager: '@user_details_manager'
+        public: true
+
+
     user_manager:
         class: App\Service\UserManager
         arguments:
             $entityManager: '@doctrine.orm.entity_manager'
             $users_repository: '@users_repository'
 
+    user_details_manager:
+        class: App\Service\UserDetailsManager
+        arguments:
+            $entityManager: '@doctrine.orm.entity_manager'
+            $form_factory: '@form.factory'
+            $users_details_repository: '@users_details_repository'
+
     users_repository:
         class: App\Repository\UsersRepository
+    
+    users_details_repository:
+        class: App\Repository\UserDetailsRepository
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
