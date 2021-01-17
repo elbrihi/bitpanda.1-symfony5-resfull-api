@@ -4,17 +4,15 @@ services:
     db:
         image: mysql
         command: --default-authentication-plugin=mysql_native_password
-        volumes:
-            - "./.data/db:/var/lib/mysql"
+        container_name: mysql
         environment:
             MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
             MYSQL_DATABASE: ${MYSQL_DATABASE}
-            MYSQL_USER: ${MYSQL_USER}
-            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
         ports:
             - 3307:3306
 
     php:
+        container_name: php
         build:
             context: docker/php7-fpm
             args:
@@ -31,6 +29,7 @@ services:
             #- db:db
 
     nginx:
+        container_name: nginx
         build: docker/nginx
         ports:
             - 8181:80

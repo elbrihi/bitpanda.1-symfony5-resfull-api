@@ -22,13 +22,12 @@ class UserManager
 
     public function getUsers()
     {
-        return $this->users_repository->getActiveAustriansUsers();
-
+        return $this->entityManager->getRepository('App\Entity\Users')->findAll();
     }
 
     public function getActiveAustriansUsers()
     {
-        return $this->entityManager->getRepository('App\Entity\Users')->findAll() ;
+        return $this->users_repository->getActiveAustriansUsers();
     }
 }
 

@@ -30,15 +30,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    /**
-     * 
-     * @Rest\View()
-     * @Rest\Get("api/users",name="_users")
-     */
-    public function getUsers()
-    {
-        return $this->user_manager->getUsers() ;
-    }
+  
 
     /**
      * 
@@ -47,6 +39,8 @@ class UserController extends AbstractController
      */
     public function getActiveAustriansUsers()
     {
-        return $this->user_manager->getUsers() ;
+       // return $this->user_manager->getUsers() ;
+
+        return $this->user_manager->getActiveAustriansUsers() ;
     }
 }
