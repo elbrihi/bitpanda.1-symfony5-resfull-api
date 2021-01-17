@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormFactoryInterface ;
 use App\Repository\UserDetailsRepository;
 use App\Form\UserDetailsType;
 
+use FOS\RestBundle\View\View;
 
 use App\Entity\UserDetails ;
 
@@ -19,6 +20,17 @@ class UserDetailsManager
 
     private $users_details_repository;
 
+    
+    /**
+     * HotelsManager constructor.
+     * @param EntityManagerInterface  $entityManager
+     * 
+     * @param FormFactoryInterface $form_factory
+     * 
+     * @param UserDetailsRepository $users_details_repository
+     * 
+     * 
+     */
     public function __construct(
         EntityManagerInterface $entityManager,
 
@@ -32,7 +44,12 @@ class UserDetailsManager
         $this->users_details_repository =  $users_details_repository ;
     }
 
-    public function updateUserDetails($id_users_details, $request)
+   /**
+     * return FOS\\RestBundle\\View\\View
+     * 
+     * the role of this function  allow you to edit user details just if the user details are there already
+     */
+    public function updateUserDetails($id_users_details, $request):View
     {
         
         $userDetails = new UserDetails();
@@ -68,7 +85,7 @@ class UserDetailsManager
            
             $this->entityManager->flush();
            
-           return \FOS\RestBundle\View\View::create(['code' => 201,'message' => ' the user details are uopdated  '], Response::HTTP_OK);
+           return \FOS\RestBundle\View\View::create(['code' => 201,'message' => ' the user details are updated  '], Response::HTTP_OK);
 
 
         } else {
@@ -77,6 +94,12 @@ class UserDetailsManager
         }
     }
 
+
+   /**
+     * return FOS\\RestBundle\\View\\View
+     * 
+     * the role of this function  allow you to delete a user just if no user details exist yet
+     */
     public function deleteUser($user_id)
     {
         

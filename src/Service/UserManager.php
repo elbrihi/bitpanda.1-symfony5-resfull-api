@@ -11,6 +11,14 @@ class UserManager
 
     private $users_repository;
 
+     /**
+     * UserManager constructor.
+     * 
+     * @param EntityManagerInterface  $entityManager
+     * 
+     * @param UsersRepository $users_repositor
+     * 
+     */
     public function __construct(
         EntityManagerInterface $entityManager,
         UsersRepository $users_repository
@@ -20,15 +28,24 @@ class UserManager
         $this->users_repository = $users_repository ;
     }
 
+   
+    /**
+     * return array
+     * 
+     * return all the users which are `active` (users table) and have an Austrian citizenship.
+     */
+
+    public function getActiveAustriansUsers():array
+    {
+        return $this->users_repository->getActiveAustriansUsers();
+    }
+
     public function getUsers()
     {
         return $this->entityManager->getRepository('App\Entity\Users')->findAll();
     }
 
-    public function getActiveAustriansUsers()
-    {
-        return $this->users_repository->getActiveAustriansUsers();
-    }
+     
 }
 
 
