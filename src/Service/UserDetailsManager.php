@@ -63,13 +63,11 @@ class UserDetailsManager
 
             $user_details->setCountries($countries) ;
             
-            //$user_details->setUser($user) ;
 
             $this->entityManager->persist($user_details);
            
             $this->entityManager->flush();
            
-           // return $user_details;
            return \FOS\RestBundle\View\View::create(['code' => 201,'message' => ' the user details are uopdated  '], Response::HTTP_OK);
 
 
@@ -96,13 +94,13 @@ class UserDetailsManager
 
         $this->entityManager->flush();
         
-        return \FOS\RestBundle\View\View::create(['code' => 200,'message' => ' delete the user '], Response::HTTP_OK);
+        return \FOS\RestBundle\View\View::create(['code' => 200,'message' => ' the user was deleted '], Response::HTTP_OK);
 
 
     }
     private function userDetailsNotFound()
     {
-        return \FOS\RestBundle\View\View::create(['code' => 404,'message' => 'UserDetails not found'], Response::HTTP_NOT_FOUND);
+        return \FOS\RestBundle\View\View::create(['code' => 404,'message' => 'User Details not found'], Response::HTTP_NOT_FOUND);
     }
     
 
