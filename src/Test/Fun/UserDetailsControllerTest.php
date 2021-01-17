@@ -6,7 +6,12 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class UserDetailsControllerTest extends WebTestCase
 {
-    
+    public function testIndex()
+    {
+        $client = static::createClient();
+        
+    }
+
     public function testUpdateUserDetailsUsers()
     {
         $client   = static::createClient();

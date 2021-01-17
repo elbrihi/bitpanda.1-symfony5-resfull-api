@@ -34,6 +34,7 @@ class UserDetailsManager
 
     public function updateUserDetails($id_users_details, $request)
     {
+        
         $userDetails = new UserDetails();
 
         $user_details =  $this->entityManager->getRepository('App:UserDetails')
@@ -99,7 +100,7 @@ class UserDetailsManager
     }
     private function userDetailsNotFound()
     {
-        return \FOS\RestBundle\View\View::create(['message' => 'UserDetails not found'], Response::HTTP_NOT_FOUND);
+        return \FOS\RestBundle\View\View::create(['code' => 404,'message' => 'User Details not found'], Response::HTTP_NOT_FOUND);
     }
     
 
