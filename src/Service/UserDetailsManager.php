@@ -39,6 +39,7 @@ class UserDetailsManager
         $user_details =  $this->entityManager->getRepository('App:UserDetails')
                          ->find($id_users_details);
         
+        
         $user =  $this->entityManager->getRepository('App:Users')->find($request->request->get('user_id'));
         
         $countries =  $this->entityManager->getRepository('App:Countries')
@@ -46,10 +47,11 @@ class UserDetailsManager
         
         
         if (empty($user_details )) {
+
             return $this->userDetailsNotFound();
         }
+
         $user_details->setCountries($countries) ;
-        $user_details ;
 
         $form = $this->form_factory->create(UserDetailsType::class, $user_details);     
 
@@ -57,23 +59,26 @@ class UserDetailsManager
 
         if ($form->isValid()) {
             
-            $user_details->setUser($user) ;
 
             $user_details->setCountries($countries) ;
             
-            $this->entityManager->merge($user_details);
+
+            $this->entityManager->persist($user_details);
            
             $this->entityManager->flush();
            
-            return $user_details;
+           return \FOS\RestBundle\View\View::create(['code' => 201,'message' => ' the user details are uopdated  '], Response::HTTP_OK);
+
 
         } else {
             return $form;
+            
         }
     }
 
     public function deleteUser($user_id)
     {
+        
         $user =  $this->entityManager->getRepository('App:Users')
                         ->find($user_id);
         $user_details =  $this->entityManager->getRepository('App:UserDetails')
@@ -81,13 +86,16 @@ class UserDetailsManager
 
         if (!empty($user_details )) {
 
-            return \FOS\RestBundle\View\View::create(['message' => ' user details exist'], Response::HTTP_NOT_FOUND);
+            return \FOS\RestBundle\View\View::create(['code' => 404,'message' => ' user details exist'], Response::HTTP_NOT_FOUND);
         }
 
         $this->entityManager->remove($user);
 
         $this->entityManager->flush();
         
+        return \FOS\RestBundle\View\View::create(['code' => 200,'message' => ' the user was deleted '], Response::HTTP_OK);
+
+
     }
     private function userDetailsNotFound()
     {
