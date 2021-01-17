@@ -9,7 +9,6 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\View\View;
 use App\Service\UserManager ;
 
-use DateTimeInterface ;
 class UserController extends AbstractController
 {
     private $user_manager ;

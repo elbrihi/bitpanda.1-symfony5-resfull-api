@@ -14,11 +14,16 @@ use App\Entity\UserDetails ;
 class UserDetailsManager
 {
     private $entityManager ;
+
     private $form_factory ;
+
     private $users_details_repository;
+
     public function __construct(
         EntityManagerInterface $entityManager,
+
         FormFactoryInterface $form_factory,
+
         UserDetailsRepository $users_details_repository
     )
     {
@@ -71,15 +76,12 @@ class UserDetailsManager
     {
         $user =  $this->entityManager->getRepository('App:Users')
                         ->find($user_id);
-        //return $user ;
         $user_details =  $this->entityManager->getRepository('App:UserDetails')
                         ->findOneBy(['user' => $user ]);
 
         if (!empty($user_details )) {
-            return 'exist';
 
-            //return $this->userDetailsNotFound();
-            return \FOS\RestBundle\View\View::create(['message' => 'UserDetails exit'], Response::HTTP_NOT_FOUND);
+            return \FOS\RestBundle\View\View::create(['message' => ' user details exist'], Response::HTTP_NOT_FOUND);
         }
 
         $this->entityManager->remove($user);
@@ -93,23 +95,4 @@ class UserDetailsManager
     }
     
 
-    /*
-       
-    public function deleteUser($id_users_details)
-    {
-
-
-        $user_details =  $this->entityManager->getRepository('App:UserDetails')
-        ->find($id_users_details);
-
-        if (empty($user_details )) {
-            return $this->userDetailsNotFound();
-        }
-
-        $this->entity_manager->remove($user_details->getUser());
-        $this->entity_manager->flush();
-        
-        // $this->users_details_repository->findUserDetailByUserId($id_users_details)  ;
-    }
-     */
 }

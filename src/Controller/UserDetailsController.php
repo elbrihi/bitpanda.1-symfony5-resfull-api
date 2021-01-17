@@ -27,14 +27,14 @@ class UserDetailsController extends AbstractController
     }
     
     /**
-     * @Rest\View()
+     * @Rest\View(statusCode=Response::HTTP_CREATED)
      * @Rest\Post("/users/details/update/{id_users_details}")
      */
     public function updateUserDetails(Request $request)
     {     
         return $this->user_details_manager->updateUserDetails($request->get('id_users_details'),$request) ;
     }
-    
+
     /**
      * @Rest\View()
      * @Rest\Delete("/users/details/delete/{id_users_details}")
