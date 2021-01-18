@@ -80,7 +80,7 @@ class UserDetailsManager
 
             $user_details->setCountries($countries) ;
             
-            $user_details->setUser($countries) ;
+            $user_details->setUser( $user) ;
 
             $this->entityManager->persist($user_details);
            

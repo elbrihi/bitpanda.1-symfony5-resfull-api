@@ -6,22 +6,18 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class UserDetailsControllerTest extends WebTestCase
 {
-    public function testIndex()
-    {
-        $client = static::createClient();
-        
-    }
+  
 
     public function testUpdateUserDetailsUsers()
     {
         $client   = static::createClient();
 
-        $crawler  = $client->request('POST', '/api/users/details/update/4',
+        $crawler  = $client->request('POST', '/api/users/details/update/2',
         array( 
-            "firstName" =>"Igor ++ test",
-            "lastName" =>"Snow",
+            "firstName" =>"Igor test",
+            "lastName" =>"Snow---",
             "phoneNumber" =>"0043664777777",
-            "user_id" =>7,
+            "user_id" =>4,
             "citizenship_country_id" =>4,
            
         )); 
